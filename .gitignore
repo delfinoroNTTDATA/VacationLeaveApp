@@ -74,6 +74,5 @@ yarn-error.log
 !.yarn/sdks
 !.yarn/versions
 
-.bundle/
-android/
-ios/
+android/app/google-services.json
+ios/FerieApp/GoogleService-Info.plist
