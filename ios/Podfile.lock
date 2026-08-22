@@ -2811,7 +2811,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-safe-area-context (5.8.0):
+  - react-native-safe-area-context (5.9.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2823,8 +2823,8 @@ PODS:
     - React-graphics
     - React-ImageManager
     - React-jsi
-    - react-native-safe-area-context/common (= 5.8.0)
-    - react-native-safe-area-context/fabric (= 5.8.0)
+    - react-native-safe-area-context/common (= 5.9.1)
+    - react-native-safe-area-context/fabric (= 5.9.1)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-renderercss
@@ -2835,7 +2835,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-safe-area-context/common (5.8.0):
+  - react-native-safe-area-context/common (5.9.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -2857,7 +2857,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - react-native-safe-area-context/fabric (5.8.0):
+  - react-native-safe-area-context/fabric (5.9.1):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -3349,7 +3349,7 @@ PODS:
     - ReactNativeDependencies
     - RNFBApp
     - Yoga
-  - RNScreens (4.25.2):
+  - RNScreens (4.27.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -3371,9 +3371,9 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
-    - RNScreens/common (= 4.25.2)
+    - RNScreens/common (= 4.27.0)
     - Yoga
-  - RNScreens/common (4.25.2):
+  - RNScreens/common (4.27.0):
     - hermes-engine
     - RCTRequired
     - RCTTypeSafety
@@ -3713,7 +3713,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": cc207623316fb041a7a3e774c252cf68a058b9e8
   gRPC-Core: 860978b7db482de8b4f5e10677216309b5ff6330
   GTMSessionFetcher: 127211aeec0b1e904fc49f4f6f895dcc535b0ecf
-  hermes-engine: 9967adf37a3b4fa8903f128dc6bdf5031f1c0ea1
+  hermes-engine: 11b7e347c24c5008232a310f86edb47d1410944d
   leveldb-library: cc8b8f8e013647a295ad3f8cd2ddf49a6f19be19
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   RCTDeprecation: 2a74a2c57675e64419bd89078efde81f7c1de90b
@@ -3753,7 +3753,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: 1a42eda3f9d415ba9f7dcd7f1fe19d4f27925751
   React-microtasksnativemodule: 354ab193a7ed66e42869c8a0c2c0d844e8e22f67
   React-mutationobservernativemodule: f53ad06cbe4b44d2a33df6aa3f01ca8e9b57e83b
-  react-native-safe-area-context: 0bbcdfba5c4a1b3203276f1ed9128e3239fdf199
+  react-native-safe-area-context: 6acf61f42ee0862bbe00ed7e6c11cd0b81b7f6e3
   React-NativeModulesApple: a092d89b58f635ebfab88048b0eda9fb516819fd
   React-networking: ee8e1504d7c1c73a3655bf545ca1184bebae4c7f
   React-oscompat: 0b72a7e926954a0415ccd83e0748b6561fe45367
@@ -3793,7 +3793,7 @@ SPEC CHECKSUMS:
   RNFBApp: b43e427e40a6860f4f7db23c5ff89415d5cc618b
   RNFBAuth: 2c861e68aef8b9d6d2ddfbdf41d1dbcf2544ea8b
   RNFBFirestore: 1059ea7353351ba50cb5d8db4797a11344f68d6e
-  RNScreens: 8d318eb8905fa1d3439a1ce5d567f82ae8245657
+  RNScreens: b2e46935230f4877eed4985c259e52bbe0b03aa7
   RNVectorIcons: bd88db8836a8611aff4b44f061364c07002a6c2a
   Yoga: c30c859b7e9b75e547b600b486fe33165f60de00
 
