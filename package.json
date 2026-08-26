@@ -8,9 +8,9 @@
     "@react-navigation/bottom-tabs": "^7.18.17",
     "@react-navigation/native": "^7.3.17",
     "@react-navigation/native-stack": "^7.18.9",
-    "expo": "~57.0.16",
+    "expo": "^46.0.21",
     "expo-file-system": "^57.0.5",
-    "expo-sharing": "^57.0.15",
+    "expo-sharing": "^14.0.8",
     "expo-status-bar": "~57.0.1",
     "firebase": "^12.18.0",
     "react": "19.2.3",
@@ -30,5 +30,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
-  "private": true
+  "private": true,
+  "allowScripts": {
+    "@firebase/util@1.15.3": true
+  }
 }
