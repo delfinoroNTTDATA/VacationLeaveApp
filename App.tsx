@@ -1,16 +1,16 @@
-import React from "react";
-import { NavigationContainer } from '@react-navigation/native'
-import AppNavigator from './src/navigation/AppNavigator';
-import { LangProvider } from './src/i18n/translations';
+// ============================================
+// App.tsx — entry point dell'app
+// ============================================
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import RootNavigator from './src/navigation/RootNavigator';
 
 export default function App() {
-
   return (
-    <LangProvider>
-      <NavigationContainer>
-        <AppNavigator />
-      </NavigationContainer>
-    </LangProvider>
+    <SafeAreaProvider>
+      <StatusBar style="light" />
+      <RootNavigator />
+    </SafeAreaProvider>
   );
 }
-

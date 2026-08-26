@@ -1,4 +1,29 @@
 {
-  "name": "FerieApp",
-  "displayName": "FerieApp"
+  "expo": {
+    "name": "Ferie & Permessi",
+    "slug": "ferie-e-permessi",
+    "scheme": "ferieepermessi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#f4f1eb",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ferie.app"
+    },
+    "android": {
+      "package": "com.ferie.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#f4f1eb",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
 }
