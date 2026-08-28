@@ -102,6 +102,11 @@ import {
     dates.forEach((ds) => batch.set(doc(evRef(), ds), { entries: [evObj] }));
     await batch.commit();
  }
+
+export async function saveDayEntries(ds: string, entries: DayEntry[]): Promise<void> {
+    await setDoc(doc(evRef(),ds), { entries });
+}
+
  export async function deleteEvents(dates: string[]): Promise<void> {
     const batch = writeBatch(db);
     dates.forEach((ds) => batch.delete(doc(evRef(), ds)))
