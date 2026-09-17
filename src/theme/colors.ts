@@ -1,7 +1,8 @@
 export const colors = {
     bg: '#ffffff',
     surface: '#f9f7f3',
-    surfcae2: '#e2ddd5',
+    surface2: '#e2ddd5',
+    border: '#e2ddd5',
     text: '#1c1917',
     textSoft: '#44403c',
     muted: '#78716c',
