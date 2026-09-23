@@ -165,7 +165,7 @@ export function isWeekend(ds: string): boolean {
 
 export function isExcluded(ds: string): boolean {
   if(isWeekend(ds) && !CAL.inclWE) return true;
-  if(isHoliday(ds) && CAL.exlLeave) return true;
+  if(isHoliday(ds) && CAL.exclLeave) return true;
   
   return false;
 }

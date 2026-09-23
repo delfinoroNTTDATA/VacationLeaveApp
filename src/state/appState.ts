@@ -68,7 +68,7 @@ export const S : AppState = {
 
 export interface CalState {
     inclWE: boolean;
-    exlLeave: boolean;
+    exclLeave: boolean;
     local: string;
     rangeStart: string | null;
     extraCountries: CountryCode[];
@@ -76,7 +76,7 @@ export interface CalState {
 
 export const CAL : CalState = {
     inclWE: false,
-    exlLeave: true,
+    exclLeave: true,
     local: DEFAULT_LOCAL,
     rangeStart: null,
     extraCountries: []
