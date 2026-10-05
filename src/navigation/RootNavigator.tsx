@@ -1,4 +1,4 @@
-import React, {useEffect , useState} from "react";
+import React, { useEffect, useState } from "react";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -23,26 +23,26 @@ function MainTabs() {
 
     return (
         <Tab.Navigator
-            screenOptions = {({ route }) => ({
+            screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarActiveTintColor: colors.leave,
                 tabBarInactiveTintColor: colors.muted,
                 tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border },
-                tabBarIcon : ({color, size}) => {
+                tabBarIcon: ({ color, size }) => {
                     const iconMap: Record<string, keyof typeof Ionicons.glyphMap> = {
                         Dashboard: 'grid-outline',
                         Calendar: 'calendar-outline',
                         Report: 'document-text-outline',
                         Setting: 'settings-outline'
                     };
-                    return <Ionicons name = {iconMap[route.name]} size = {size} color = {color} />;
+                    return <Ionicons name={iconMap[route.name]} size={size} color={color} />;
                 }
             })}
         >
-            <Tab.Screen name = "Dashboard" component = {DashboardScreen} options = {{ tabBarLabel: t('nav_dashboard') }} />
-            <Tab.Screen name = "Calendar" component = {CalendarScreen} options = {{ tabBarLabel: t('nav_calendar') }} />
-            <Tab.Screen name = "Report" component = {ReportScreen} options = {{ tabBarLabel: t('nav_report')}} />
-            <Tab.Screen name = "Setting" component = {SettingsScreen} options = {{ tabBarLabel: t('nav_setting')}} />
+            <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ tabBarLabel: t('nav_dashboard') }} />
+            <Tab.Screen name="Calendar" component={CalendarScreen} options={{ tabBarLabel: t('nav_calendar') }} />
+            <Tab.Screen name="Report" component={ReportScreen} options={{ tabBarLabel: t('nav_report') }} />
+            <Tab.Screen name="Setting" component={SettingsScreen} options={{ tabBarLabel: t('nav_settings') }} />
         </Tab.Navigator>
     )
 }
@@ -95,8 +95,8 @@ export default function RootNavigator() {
 
     if (booting) {
         return (
-            <View style = {styles.loading}>
-                <ActivityIndicator size = "large" color = {colors.leave} />
+            <View style={styles.loading}>
+                <ActivityIndicator size="large" color={colors.leave} />
             </View>
         )
     }
@@ -109,5 +109,5 @@ export default function RootNavigator() {
 }
 
 const styles = StyleSheet.create({
-  loading: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.bg },
+    loading: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.bg },
 });

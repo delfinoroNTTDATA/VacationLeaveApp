@@ -178,7 +178,7 @@ export default function ReportScreen() {
 
                 <View style = {styles.chipRow}>
                     <TouchableOpacity style = {styles.smallBtn} onPress = {() => selAllMonths(true)}>
-                        <Text style = {styles.smallBtnText}>{t('rpt_none')}</Text>
+                        <Text style = {styles.smallBtnText}>{t('rpt_all')}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style = {styles.smallBtn} onPress = {() => selAllMonths(false)}>
