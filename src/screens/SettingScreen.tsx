@@ -152,7 +152,7 @@ export default function SettingsScreen() {
                                         style = {[styles.yearSelectChip, manYear === String(y) && styles.yearSelectChipActive]}
                                         onPress = {() => onManYearChange(String(y))}
                                     >
-                                        <Text style = {[styles.yearSelectChipText, manYear === String(y) && styles.yearSelectChipActive]}>{y}</Text>
+                                        <Text style = {[styles.yearSelectChipText, manYear === String(y) && styles.yearSelectChipTextActive]}>{y}</Text>
                                     </TouchableOpacity>
                                 ))}
                             </View>
