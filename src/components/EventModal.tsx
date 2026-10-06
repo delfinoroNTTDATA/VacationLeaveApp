@@ -136,7 +136,7 @@ export default function EventModal({ visible, dates, onClose, onSaved}: EventMoa
     const activeLight = type === 'permit' ? colors.permitLight : colors.leaveLight;
 
     return (
-        <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+        <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose} >
             <KeyboardAvoidingView 
                 style = {styles.overlay}
                 behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -273,6 +273,9 @@ const styles = StyleSheet.create({
         borderRadius: radius.lg,
         color: colors.text,
         marginBottom: 2,
+        width: '92%', 
+        maxWidth: 400, 
+        padding: 22
     },
 
     title: {

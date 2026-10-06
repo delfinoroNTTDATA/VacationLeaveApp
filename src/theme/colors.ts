@@ -39,8 +39,8 @@ export const fonts = {
 };
 
 export function typeColor(type: 'leave' | 'permit' | 'office'): string {
-    if (type = 'leave') return colors.leave;
-    if (type = 'permit') return colors.permit;
+    if (type === 'leave') return colors.leave;
+    if (type === 'permit') return colors.permit;
     return colors.office;
 }
 

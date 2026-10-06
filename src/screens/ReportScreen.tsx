@@ -177,13 +177,17 @@ export default function ReportScreen() {
                 </View>
 
                 <View style = {styles.chipRow}>
-                    <TouchableOpacity style = {styles.smallBtn} onPress = {() => selAllMonths(true)}>
-                        <Text style = {styles.smallBtnText}>{t('rpt_all')}</Text>
-                    </TouchableOpacity>
+                    {selMonths.length < 12 && (
+                        <TouchableOpacity style = {styles.smallBtn} onPress = {() => selAllMonths(true)}>
+                            <Text style = {styles.smallBtnText}>{t('rpt_all')}</Text>
+                        </TouchableOpacity>
+                    )}
 
-                    <TouchableOpacity style = {styles.smallBtn} onPress = {() => selAllMonths(false)}>
-                        <Text style = {styles.smallBtnText}>{t('rpt_none')}</Text>
-                    </TouchableOpacity>
+                    {selMonths.length > 0 && (
+                        <TouchableOpacity style = {styles.smallBtn} onPress = {() => selAllMonths(false)}>
+                            <Text style = {styles.smallBtnText}>{t('rpt_none')}</Text>
+                        </TouchableOpacity>
+                    )}
                 </View>
 
                 <View style = {styles.actionRow}>

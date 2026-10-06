@@ -141,9 +141,9 @@ export default function CalendarScreen() {
             cells.push({ds: null , d: 0});
         }
 
-        for (let d = 0; d <= dim; d++) {
+        for (let d = 1; d <= dim; d++) {
             cells.push({ds: `${vy}-${pad(vm + 1)}-${pad(d)}`, d});
-            
+
         }
 
         return cells.map(({ds , d}) =>{
@@ -196,7 +196,7 @@ export default function CalendarScreen() {
                         <Text style = {styles.navBtnText}>&#8249;</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style = {styles.monthLabel} onPress={() => setCountryPickerOpen(true)}>
+                    <TouchableOpacity style = {styles.monthLabel} onPress={() => setMonthPickerOpen(true)}>
                         <Text style = {styles.monthLabelText}>{monthNames()[vm]} {vy}</Text>
                     </TouchableOpacity>
 
@@ -333,13 +333,13 @@ export default function CalendarScreen() {
 
                                 {isHoliday && (
                                     <View style = {[styles.tag, styles.tagHoliday]}>
-                                        <Text style = {styles.tagTextHoliday} numberOfLines={1}>&#127881; {hName}</Text>
+                                        <Text style = {styles.tagTextHoliday} numberOfLines={2}>&#127881; {hName}</Text>
                                     </View>
                                 )}
 
                                 {extras.map((ex, i) => (
                                     <View key={i} style = {[styles.tag, styles.tagExtra]}>
-                                        <Text style = {styles.tagTextExtra} numberOfLines={1}>{COUNTRY_FLAG[ex.country]} {ex.name}</Text>
+                                        <Text style = {styles.tagTextExtra} numberOfLines={2}>{COUNTRY_FLAG[ex.country]} {ex.name}</Text>
                                     </View>
                                 ))}
                             </TouchableOpacity>
@@ -464,7 +464,7 @@ const styles = StyleSheet.create({
   wday: { width: CELL_WIDTH, textAlign: 'center', fontSize: 11, fontWeight: '700', color: colors.muted },
   daysGrid: { flexDirection: 'row', flexWrap: 'wrap' },
   dayCell: {
-    width: CELL_WIDTH, minHeight: 64, padding: 3, borderWidth: 0.5, borderColor: colors.border,
+    width: CELL_WIDTH, minHeight: 92, padding: 4, borderWidth: 0.5, borderColor: colors.border,
     backgroundColor: colors.surface,
   },
   dayWeekend: { backgroundColor: colors.surface2 },
@@ -474,13 +474,13 @@ const styles = StyleSheet.create({
   rangeStart: { backgroundColor: colors.leave },
   rangeEnd: { backgroundColor: colors.leave },
   rangeMid: { backgroundColor: colors.leaveLight },
-  dayNum: { fontSize: 11, fontWeight: '600', color: colors.text },
-  tag: { borderRadius: 3, paddingHorizontal: 3, paddingVertical: 1, marginTop: 2 },
-  tagText: { fontSize: 8, color: '#fff', fontWeight: '700' },
+  dayNum: { fontSize: 13, fontWeight: '700', color: colors.text },
+  tag: { borderRadius: 4, paddingHorizontal: 4, paddingVertical: 2, marginTop: 3 },
+  tagText: { fontSize: 9, color: '#fff', fontWeight: '700' },
   tagHoliday: { backgroundColor: '#fed7aa' },
-  tagTextHoliday: { fontSize: 8, color: '#9a3412', fontWeight: '700' },
+  tagTextHoliday: { fontSize: 9, color: '#9a3412', fontWeight: '700' },
   tagExtra: { backgroundColor: '#e0e7ff' },
-  tagTextExtra: { fontSize: 8, color: '#3730a3', fontWeight: '700' },
+  tagTextExtra: { fontSize: 9, color: '#3730a3', fontWeight: '700' },
   pickerOverlay: { flex: 1, backgroundColor: 'rgba(28,25,23,0.55)', alignItems: 'center', justifyContent: 'center', padding: 24 },
   pickerCard: { backgroundColor: colors.surface, borderRadius: 16, padding: 16, width: '100%', maxWidth: 380, maxHeight: '70%' },
   yearStepper: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 24, marginBottom: 14 },
