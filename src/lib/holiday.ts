@@ -1,16 +1,16 @@
 import { CAL } from "../state/appState";
 import { LOCALES , CountryCode , LangCode } from "./locales";
 import { labelForKey } from "./holidayNames";
-
+ 
 function pad(n: number): string {
     return String(n).padStart(2, '0');
 }
-
+ 
 export function getHolidayKeys(year: number , country: CountryCode): Map<string , string> {
     const h = new Map<string , string>();
     const add = (m: number, d: number, key: string) => h.set(`${year}-${pad(m)}-${pad(d)}` , key);
-    const addDate = (dt: Date, key: string) => h.set(`${dt.getFullYear()}-${pad(dt.getMonth())}-${dt.getDate()}`,key)
-
+    const addDate = (dt: Date, key: string) => h.set(`${dt.getFullYear()}-${pad(dt.getMonth() + 1)}-${pad(dt.getDate())}`, key);
+ 
     function easter(y: number): Date {
         const a = y % 19;
         const b = Math.floor(y / 100);
@@ -25,24 +25,27 @@ export function getHolidayKeys(year: number , country: CountryCode): Map<string 
         const l = (32 + 2 * e + 2 * i - h2 - k) % 7;
         const m = Math.floor((a + 11 * h2 + 22 * l) / 451);
         const mo = Math.floor((h2 + l - 7 * m + 114) / 31);
-        const day = ((h2 + l - 7 * m + 111) % 31) + 1;
+        const day = ((h2 + l - 7 * m + 114) % 31) + 1;
         
         return new Date(y, mo - 1, day);
     }
-
+ 
     const eD = easter(year);
     const eM = new Date(eD);
     eM.setDate(eM.getDate() + 1);
-
+ 
     const asc = new Date(eD);
     asc.setDate(asc.getDate() + 39);
-
+ 
+    const gf = new Date(eD);
+    gf.setDate(gf.getDate() - 2);
+ 
     const pen = new Date(asc);
     pen.setDate(pen.getDate() + 10);
-
+ 
     const penL = new Date(pen);
     penL.setDate(penL.getDate() + 1);
-
+ 
     switch (country) {
     case 'IT':
       add(1, 1, 'new_year'); add(1, 6, 'epiphany'); add(4, 25, 'it_liberation'); add(5, 1, 'labor_day');
@@ -65,12 +68,12 @@ export function getHolidayKeys(year: number , country: CountryCode): Map<string 
       add(1, 1, 'new_year'); add(1, 6, 'epiphany'); add(5, 1, 'labor_day');
       add(8, 15, 'assumption'); add(10, 12, 'es_national'); add(11, 1, 'all_saints');
       add(12, 6, 'es_constitution'); add(12, 8, 'immaculate'); add(12, 25, 'christmas');
-      addDate(eD, 'good_friday');
+      addDate(gf, 'good_friday');
       break;
     case 'UK':
       add(1, 1, 'new_year'); add(5, 1, 'uk_may_bank'); add(8, 28, 'uk_summer_bank');
       add(12, 25, 'christmas'); add(12, 26, 'boxing_day'); add(12, 27, 'uk_christmas_sub');
-      addDate(eD, 'good_friday'); addDate(eM, 'easter_monday');
+      addDate(gf, 'good_friday'); addDate(eM, 'easter_monday');
       break;
     case 'US':
       add(1, 1, 'new_year'); add(7, 4, 'us_independence'); add(11, 11, 'us_veterans'); add(12, 25, 'christmas');
@@ -102,91 +105,91 @@ export function getHolidayKeys(year: number , country: CountryCode): Map<string 
       addDate(eD, 'easter');
       break;
   }
-
+ 
   return h;
 }
-
+ 
 let _keyCache: Record<string, Map<string , string>> = {};
-
+ 
 export function clearHolidayCache() {
     _keyCache = {};
 }
-
+ 
 function keysFor(year: number, country: CountryCode): Map<string , string> {
     const k = `${year}-${country}`;
-
+ 
     if (!_keyCache[k]) _keyCache[k] = getHolidayKeys(year , country);
     return _keyCache[k];
 }
-
+ 
 export function currentCountry(): CountryCode {
     return LOCALES[CAL.local].country;
 }
-
+ 
 export function holidayForYear(year: number):   Map<string , string> {
     return keysFor(year , currentCountry());
 }
-
+ 
 export function isHoliday(ds: string): boolean {
     const y = parseInt(ds.split('-')[0], 10);
     return holidayForYear(y).has(ds);
 }
-
+ 
 export function holidayName(ds: string , lang: LangCode): string | null {
     const y = parseInt(ds.split('-')[0], 10);
     const key = holidayForYear(y).get(ds);
-
+ 
     return key ? labelForKey(key , lang) : null;
 }
-
+ 
 export interface ExtraHoliday {
     country: CountryCode;
     name: string;
 }
-
+ 
 export function extraHolidayFor(ds: string , lang: LangCode): ExtraHoliday[] {
     const y = parseInt(ds.split('-')[0] , 10);
     const out: ExtraHoliday[] = [];
-
+ 
     (CAL.extraCountries || []).forEach((country) => {
       if (country === currentCountry()) return;
       const key = keysFor(y , country).get(ds);
       if(key) out.push({ country , name: labelForKey(key , lang) });
     })
-
+ 
     return out;
 }
-
+ 
 export function isWeekend(ds: string): boolean {
   const [year, month, day] = ds.split('-').map(Number);
   const dow = new Date(year, month -  1, day).getDay();
   return dow === 0 || dow === 6;
 }
-
+ 
 export function isExcluded(ds: string): boolean {
   if(isWeekend(ds) && !CAL.inclWE) return true;
   if(isHoliday(ds) && CAL.exclLeave) return true;
   
   return false;
 }
-
+ 
 export function rangeDays(start: string , end: string): string[] {
   const days: string[] = [];
   const [sy, sm, sd] = start.split('-').map(Number);
   const [ey, em, ed] = end.split('-').map(Number);
-
+ 
   const curDate = new Date(sy, sm - 1, sd);
   const endDate = new Date(ey, em - 1, ed);
-
+ 
   while (curDate <= endDate) {
     const ds = `${curDate.getFullYear()}-${pad(curDate.getMonth() + 1)}-${pad(curDate.getDate())}`;
     if(!isExcluded(ds)) days.push(ds);
     curDate.setDate(curDate.getDate() + 1);
   }
-
+ 
   return days;
 }
-
+ 
 export const COUNTRY_FLAG: Record<CountryCode , string> = {
   IT: '🇮🇹',
   DE: '🇩🇪',
@@ -199,7 +202,7 @@ export const COUNTRY_FLAG: Record<CountryCode , string> = {
   BE: '🇧🇪',
   PT: '🇵🇹'
 }
-
+ 
 export const COUNTRY_NAMES: Record<CountryCode, Record<LangCode, string>> = {
   IT: { it: 'Italia', en: 'Italy', de: 'Italien', fr: 'Italie', es: 'Italia', nl: 'Italië', pt: 'Itália' },
   DE: { it: 'Germania', en: 'Germany', de: 'Deutschland', fr: 'Allemagne', es: 'Alemania', nl: 'Duitsland', pt: 'Alemanha' },
@@ -212,10 +215,10 @@ export const COUNTRY_NAMES: Record<CountryCode, Record<LangCode, string>> = {
   BE: { it: 'Belgio', en: 'Belgium', de: 'Belgien', fr: 'Belgique', es: 'Bélgica', nl: 'België', pt: 'Bélgica' },
   PT: { it: 'Portogallo', en: 'Portugal', de: 'Portugal', fr: 'Portugal', es: 'Portugal', nl: 'Portugal', pt: 'Portugal' },
 };
-
+ 
 export function countryName(cc: CountryCode , lang: LangCode): string {
   const e = COUNTRY_NAMES[cc];
   if(!e) return cc;
-
+ 
   return e[lang] || e.it || cc;
 }
